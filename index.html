@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<meta charset=utf-8>
+<title>Simple CORS Requester</title>
+<h1>Simple CORS Requester</h1>
+<form id=cors_request action="" method="">
+    <fieldset>
+        <legend>Request Infomation</legend>
+        <label for=url>URL: </label>
+        <input 
+            id=url
+            type=url 
+            name=url
+            placeholder=https://www.example.com
+        >
+        <button type=submit>submit</button>
+    </fieldset>
+</form>
+
+<script>
+
+    const $ = document.querySelector.bind(document)
+    EventTarget.prototype.on  = EventTarget.prototype.addEventListener
+    EventTarget.prototype.off = EventTarget.prototype.removeEventListener
+
+    $('#cors_request').on('submit', async (e) => {
+        console.log(e)
+        e.preventDefault()
+
+        let url = document.forms.cors_request.url.value
+        console.log(await fetch(url))
+    })
+        
+</script>
+</html>

@@ -6,15 +6,24 @@
 <form id=cors_request action="" method="">
     <fieldset>
         <legend>Request Infomation</legend>
-        <label for=url>URL: </label>
-        <input 
-            id=url
-            type=url 
-            name=url
-            placeholder=https://www.example.com
-            value=https://example-cors-api.github.io/v1/pets.json
-        >
-        <button type=submit>submit</button>
+        <div>
+            <label for=url>URL: </label>
+            <input 
+                id=url
+                type=url 
+                name=url
+                placeholder=https://www.example.com
+                value=https://example-cors-api.github.io/v1/pets.json
+                style='width: 300px;'
+            >
+        </div>
+        <div>
+            <label for=method>HTTP Method: </label>
+            <input id=method name=method type=text value=GET>
+        </div>
+        <div>
+            <button type=submit>submit</button>
+        </div>
     </fieldset>
 </form>
 
@@ -29,8 +38,30 @@
         e.preventDefault()
 
         let url = document.forms.cors_request.url.value
-        console.log(await fetch(url))
+
+        let myMethod = document.forms.cors_request.method.value;
+        let myHeaders = new Headers();
+        let myBody = null;
+        let myMode = 'cors';
+        let myCredentials = 'omit';
+        let myCache = 'default';
+        let myRedirect = 'manual';
+        let myReferrer = 'client';
+        let myIntegrity = '';
+
+        let myInit = {
+            method: myMethod,
+            headers: myHeaders,
+            body: myBody,
+            mode: myMode,
+            credentials: myCredentials,
+            cache: myCache,
+            redirect: myRedirect,
+            referrer: myReferrer,
+            integrity: myIntegrity
+        };
+
+        console.log(await fetch(url, myInit))
     })
-        
 </script>
 </html>
